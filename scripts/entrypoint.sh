@@ -13,4 +13,4 @@ echo "$json" | gzip -c | curl -X POST \
     -H "X-Insert-Key: $NEW_RELIC_INGIGHTS_INSERT_KEY" \
     -H "Content-Encoding: gzip" \
     --data-binary @- \
-    "$NEWRELIC_URL"
+    "https://insights-collector.newrelic.com/v1/accounts/$NEWRELIC_ACCOUNT_ID/events"

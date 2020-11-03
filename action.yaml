@@ -12,8 +12,8 @@ inputs:
   insightsInsertKey:
     description: 'Your New Relic Insights Insert Key.'
     required: true
-  newrelicUrl:
-    description: 'New Relic URL containing your accountID.'
+  newrelicAccountId:
+    description: 'New Relic Account ID.'
     required: true
 runs:
   using: 'docker'
@@ -25,4 +25,4 @@ runs:
     ACTOR: ${{ github.actor }}
     PROJECT: ${{ github.repository }}
     NEW_RELIC_INGIGHTS_INSERT_KEY: ${{ inputs.insightsInsertKey }}
-    NEWRELIC_URL: ${{ inputs.newrelicUrl }}
+    NEWRELIC_ACCOUNT_ID: ${{ inputs.newrelicAccountId }}
