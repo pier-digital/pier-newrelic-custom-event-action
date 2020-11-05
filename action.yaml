@@ -1,0 +1,28 @@
+name: 'New Relic Custom Event Action'
+author: 'Pier Digital Services'
+description: 'Send custom events to New Relic'
+branding:
+  icon: 'upload-cloud'
+  color: 'blue'
+inputs:
+  eventType:
+    description: 'Event Type inside New Relic. This will be used to query this data later.'
+    required: false
+    default: 'deploy'
+  insightsInsertKey:
+    description: 'Your New Relic Insights Insert Key.'
+    required: true
+  newrelicAccountId:
+    description: 'New Relic Account ID.'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    EVENT_TYPE: ${{ inputs.eventType }}
+    DEPLOYMENT_STATUS: ${{ job.status }}
+    DESCRIPTION: ${{ github.event.commits[0].message }}
+    ACTOR: ${{ github.actor }}
+    PROJECT: ${{ github.repository }}
+    NEW_RELIC_INGIGHTS_INSERT_KEY: ${{ inputs.insightsInsertKey }}
+    NEWRELIC_ACCOUNT_ID: ${{ inputs.newrelicAccountId }}
